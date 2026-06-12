@@ -853,6 +853,60 @@ void copyData(Mahasiswa source[], Mahasiswa destination[], int n) {
     }
 }
 
+void rebuildStructures() {
+	int i;
+	
+	head = NULL;
+	root = NULL;
+	avlRoot = NULL
+	heapSize = 0;
+	
+	for(i = 0; i < HASH_SIZE; i++) {
+		hashTable[i] = NULL;
+	}
+	
+	trieRoot = createTrieNode();
+	
+	for(i = 0; i < jumlahData; i++) {
+		insertLinkedList(data[i]);
+		insertHash(data[i]);
+		root = insertBST(root, data[i]);
+		avlRoot = insertAVL(avlRoot, data[i]);
+		insertHeap(data[i]);
+		insertTrie(data[i].nama);
+	}
+}
+
+void updateData() {
+	char nimCari[20];
+	int i;
+	
+	printf("\n===== UPDATE DATA =====\n");
+	printf("Masukkan NIM yang ingin diupdate : ");
+	scanf("%s", nimCari);
+	
+	for(i = 0; i < jumlahData; i++) {
+		if(strcmp(data[i].nim, nimCari) == 0) {
+			printf("\nDAta tidak ditemukan!\n");
+			printf("NIM   : %s\n", data[i].nim);
+			printf("Nama  : %s\n", data[i].nama);
+			printf("Nilai : %.2f\n", data[i].nilai);
+			printf("\nMasukkan nama baru : ");
+			scanf("%[^\n]", data[i].nama);
+			printf("Masukkan nilai baru  : ");
+			scanf("%f", &data[i].nilai);
+			
+			rebuildStructures();
+			
+			printf("\nData berhasil diupdate!\n");
+			
+			return;
+		}
+	}
+	
+	printf("\nNIM tidak ditemukan!\n");
+}
+
 
 // MENU
 
@@ -866,20 +920,21 @@ int main() {
 		printf("1. Tambah Data\n");
 		printf("2. Tampilkan Data\n");
 		printf("3. Hapus Data\n");
-		printf("4. Quick Sort\n");
-		printf("5. Merge Sort\n");
-		printf("6. Heap Sort\n");
-		printf("7. Tampilkan Linked List\n");
-		printf("8. Cari NIM (Hash Table)\n");
-		printf("9. Tampilkan BST (Indorder)\n");
-		printf("10. Cari Nilai di BST\n");
-		printf("11. Tampilkan AVL Tree\n");
-		printf("12. Cari Nilai di AVL\n");
-		printf("13. Tampilkan Top 1\n");
-		printf("14. Tampilkan Top N\n");
-		printf("15. Cari Nama (Trie)\n");
-		printf("16. Tampilkan Kelompok Nilai\n");
-		printf("17. Bandingkan Semua Sorting\n");
+		printf("4. Update Data\n");
+		printf("5. Quick Sort\n");
+		printf("6. Merge Sort\n");
+		printf("7. Heap Sort\n");
+		printf("8. Tampilkan Linked List\n");
+		printf("9. Cari NIM (Hash Table)\n");
+		printf("10. Tampilkan BST (Indorder)\n");
+		printf("11. Cari Nilai di BST\n");
+		printf("12. Tampilkan AVL Tree\n");
+		printf("13. Cari Nilai di AVL\n");
+		printf("14. Tampilkan Top 1\n");
+		printf("15. Tampilkan Top N\n");
+		printf("16. Cari Nama (Trie)\n");
+		printf("17. Tampilkan Kelompok Nilai\n");
+		printf("18. Bandingkan Semua Sorting\n");
 		printf("0. Keluar\n");
 		printf("Pilihan : ");
 		scanf("%d", &pilihan);
@@ -896,8 +951,12 @@ int main() {
 			case 3:
 				hapusData();
 				break;
+				
+			case 4:
+				updateData();
+				break;
 			
-			case 4: {
+			case 5: {
 				clock_t start = clock();
 				quickSort(0, jumlahData - 1);
 				clock_t end = clock();
@@ -908,7 +967,7 @@ int main() {
 				break;
 			}
 				
-			case 5: {
+			case 6: {
     			clock_t start = clock();
 				mergeSort(0, jumlahData - 1);
 				clock_t end = clock();
@@ -919,7 +978,7 @@ int main() {
 				break;
 			}
 			
-			case 6: {
+			case 7: {
     			clock_t start = clock();
 				heapSort();
 				clock_t end = clock();
@@ -930,11 +989,11 @@ int main() {
 				break;
 			}
 			
-			case 7:
+			case 8:
 				tampilLinkedList();
 				break;
 				
-			case 8: {
+			case 9: {
 				char nimCari[20];
 				
 				printf("Masukkan NIM : ");
@@ -944,12 +1003,12 @@ int main() {
 				break;
 			}
 			
-			case 9:
+			case 10:
 				printf("\n===== BST INORDER =====\n");
 				inorderBST(root);
 				break;
 			
-			case 10: {
+			case 11: {
 				float nilaiCari;
 				
 				printf("Masukkan Nilai : ");
@@ -970,12 +1029,12 @@ int main() {
 				break;
 			}
 			
-			case 11:
+			case 12:
 				printf("\n===== AVL TREE =====\n");
 				inorderAVL(avlRoot);
 				break;
 			
-			case 12: {
+			case 13: {
 				float nilaiCari;
 				
 				printf("Masukkan Nilai : ");
@@ -996,11 +1055,11 @@ int main() {
 				break;
 			}
 			
-			case 13:
+			case 14:
 				tampilTop1();
 				break;
 			
-			case 14: {
+			case 15: {
 				int n;
 				
 				printf("Top berapa? ");
@@ -1012,7 +1071,7 @@ int main() {
 				break;
 			}
 			
-			case 15: {
+			case 16: {
 				char prefix[50];
 				
 				printf("Masukkan awalan nama : ");
@@ -1022,11 +1081,11 @@ int main() {
 				break;
 			}
 			
-			case 16:
+			case 17:
 				tampilKelompok();
 				break;
 			
-			case 17: {
+			case 18: {
     			Mahasiswa backup[MAX];
     			copyData(data, backup, jumlahData);
 
