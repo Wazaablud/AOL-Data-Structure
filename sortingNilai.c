@@ -858,10 +858,10 @@ void rebuildStructures() {
 	
 	head = NULL;
 	root = NULL;
-	avlRoot = NULL
+	avlRoot = NULL;
 	heapSize = 0;
 	
-	for(i = 0; i < HASH_SIZE; i++) {
+	for(i = 0; i < TABLE_SIZE; i++) {
 		hashTable[i] = NULL;
 	}
 	
