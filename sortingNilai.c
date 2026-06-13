@@ -6,6 +6,9 @@
 
 #define MAX 100
 
+
+// ARRAY
+
 typedef struct {
 	char nim[20];
 	char nama[50];
@@ -736,8 +739,6 @@ void buildDisjointSet() {
 	}
 }
 
-
-// ARRAY + POINTER
 
 void tampilKelompok() {
 	buildDisjointSet();
