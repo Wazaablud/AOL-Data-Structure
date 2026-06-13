@@ -841,7 +841,7 @@ void hapusData() {
 	
 	jumlahData--;
 	
-	printf("data berhasil dihapus!\n");
+	printf("Data berhasil dihapus!\n");
 	
 	hapusLinkedList(nim);
 }
@@ -887,12 +887,12 @@ void updateData() {
 	
 	for(i = 0; i < jumlahData; i++) {
 		if(strcmp(data[i].nim, nimCari) == 0) {
-			printf("\nDAta tidak ditemukan!\n");
+			printf("\nData ditemukan!\n");
 			printf("NIM   : %s\n", data[i].nim);
 			printf("Nama  : %s\n", data[i].nama);
 			printf("Nilai : %.2f\n", data[i].nilai);
 			printf("\nMasukkan nama baru : ");
-			scanf("%[^\n]", data[i].nama);
+			scanf(" %[^\n]", data[i].nama);
 			printf("Masukkan nilai baru  : ");
 			scanf("%f", &data[i].nilai);
 			
