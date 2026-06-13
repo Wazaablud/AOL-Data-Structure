@@ -745,6 +745,7 @@ void tampilKelompok() {
 	printf("\n===== KELOMPOK NILAI ======\n");
 	
 	for(int i = 0; i < jumlahData; i++) {
+		
 		if(findSet(i) == i) {
 			printf("\nKelompok %c\n", getGrade(data[i].nilai));
 			
